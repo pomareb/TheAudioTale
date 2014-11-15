@@ -1,0 +1,17 @@
+﻿Build started 30/10/2014 03:19:54.
+     1>Project "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML_bin\ZERO_CHECK.vcxproj" on node 2 (Rebuild target(s)).
+     1>CustomBuild:
+         Checking Build System
+         CMake does not need to re-run because C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/src/SFML/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/src/SFML/System/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/src/SFML/Window/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/src/SFML/Network/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/src/SFML/Graphics/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/src/SFML/Audio/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/src/SFML/Main/CMakeFiles/generate.stamp is up-to-date.
+     1>Done Building Project "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML_bin\ZERO_CHECK.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.54

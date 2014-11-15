@@ -1,0 +1,8 @@
+C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/CMakeFiles/ALL_BUILD.dir
+C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/CMakeFiles/ZERO_CHECK.dir
+C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/src/SFML/Audio/CMakeFiles/sfml-audio.dir
+C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/src/SFML/Graphics/CMakeFiles/sfml-graphics.dir
+C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/src/SFML/Main/CMakeFiles/sfml-main.dir
+C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/src/SFML/Network/CMakeFiles/sfml-network.dir
+C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/src/SFML/System/CMakeFiles/sfml-system.dir
+C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/src/SFML/Window/CMakeFiles/sfml-window.dir

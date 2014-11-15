@@ -1,0 +1,70 @@
+﻿Build started 30/10/2014 03:20:09.
+     1>Project "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML_bin\src\SFML\Graphics\sfml-graphics.vcxproj" on node 4 (Rebuild target(s)).
+     1>CustomBuild:
+         Building Custom Rule C:/Users/Benjamin/Code/Github/TheAudioTale/SFML-2.1/src/SFML/Graphics/CMakeLists.txt
+         CMake does not need to re-run because C:\Users\Benjamin\Code\Github\TheAudioTale\SFML_bin\src\SFML\Graphics\CMakeFiles\generate.stamp is up-to-date.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\include" /I"C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src" /I"C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\extlibs\headers\libfreetype\windows" /I"C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\extlibs\headers" /I"C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\extlibs\headers\jpeg" /Zi /nologo /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _CRT_SECURE_NO_DEPRECATE /D GLEW_STATIC /D STBI_FAILURE_USERMSG /D "CMAKE_INTDIR=\"Debug\"" /D SFML_GRAPHICS_EXPORTS /D _WINDLL /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"sfml-graphics.dir\Debug\\" /Fd"sfml-graphics.dir\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\Color.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\Font.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\GLCheck.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\Image.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\ImageLoader.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\RenderStates.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\RenderTexture.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\RenderTarget.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\RenderWindow.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\Shader.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\Texture.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\TextureSaver.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\Transform.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\Transformable.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\View.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\Vertex.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\Shape.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\CircleShape.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\RectangleShape.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\ConvexShape.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\Sprite.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\Text.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\VertexArray.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\RenderTextureImpl.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\RenderTextureImplFBO.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\Graphics\RenderTextureImplDefault.cpp"
+         Color.cpp
+         Font.cpp
+         GLCheck.cpp
+         Image.cpp
+         ImageLoader.cpp
+         RenderStates.cpp
+         RenderTexture.cpp
+         RenderTarget.cpp
+         RenderWindow.cpp
+         Shader.cpp
+         Texture.cpp
+         TextureSaver.cpp
+         Transform.cpp
+         Transformable.cpp
+         View.cpp
+         Vertex.cpp
+         Shape.cpp
+         CircleShape.cpp
+         RectangleShape.cpp
+         ConvexShape.cpp
+         Generating Code...
+         Compiling...
+         Sprite.cpp
+         Text.cpp
+         VertexArray.cpp
+         RenderTextureImpl.cpp
+         RenderTextureImplFBO.cpp
+         RenderTextureImplDefault.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Benjamin\Code\Github\TheAudioTale\SFML_bin\lib\Debug\sfml-graphics-d-2.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "..\..\..\lib\Debug\sfml-window-d.lib" "..\..\..\lib\Debug\sfml-system-d.lib" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\extlibs\libs-msvc\x86\freetype.lib" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\extlibs\libs-msvc\x86\glew.lib" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\extlibs\libs-msvc\x86\jpeg.lib" opengl32.lib winmm.lib gdi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/lib/Debug/sfml-graphics-d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/lib/Debug/sfml-graphics-d.lib" /MACHINE:X86 /SAFESEH  /machine:X86 /debug /DLL "sfml-graphics.dir\Debug\Color.obj"
+         "sfml-graphics.dir\Debug\Font.obj"
+         "sfml-graphics.dir\Debug\GLCheck.obj"
+         "sfml-graphics.dir\Debug\Image.obj"
+         "sfml-graphics.dir\Debug\ImageLoader.obj"
+         "sfml-graphics.dir\Debug\RenderStates.obj"
+         "sfml-graphics.dir\Debug\RenderTexture.obj"
+         "sfml-graphics.dir\Debug\RenderTarget.obj"
+         "sfml-graphics.dir\Debug\RenderWindow.obj"
+         "sfml-graphics.dir\Debug\Shader.obj"
+         "sfml-graphics.dir\Debug\Texture.obj"
+         "sfml-graphics.dir\Debug\TextureSaver.obj"
+         "sfml-graphics.dir\Debug\Transform.obj"
+         "sfml-graphics.dir\Debug\Transformable.obj"
+         "sfml-graphics.dir\Debug\View.obj"
+         "sfml-graphics.dir\Debug\Vertex.obj"
+         "sfml-graphics.dir\Debug\Shape.obj"
+         "sfml-graphics.dir\Debug\CircleShape.obj"
+         "sfml-graphics.dir\Debug\RectangleShape.obj"
+         "sfml-graphics.dir\Debug\ConvexShape.obj"
+         "sfml-graphics.dir\Debug\Sprite.obj"
+         "sfml-graphics.dir\Debug\Text.obj"
+         "sfml-graphics.dir\Debug\VertexArray.obj"
+         "sfml-graphics.dir\Debug\RenderTextureImpl.obj"
+         "sfml-graphics.dir\Debug\RenderTextureImplFBO.obj"
+         "sfml-graphics.dir\Debug\RenderTextureImplDefault.obj"
+            Creating library C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/lib/Debug/sfml-graphics-d.lib and object C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/lib/Debug/sfml-graphics-d.exp
+         sfml-graphics.vcxproj -> C:\Users\Benjamin\Code\Github\TheAudioTale\SFML_bin\lib\Debug\sfml-graphics-d-2.dll
+     1>Done Building Project "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML_bin\src\SFML\Graphics\sfml-graphics.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:09.93

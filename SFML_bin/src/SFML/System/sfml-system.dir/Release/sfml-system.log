@@ -1,0 +1,44 @@
+﻿Build started 30/10/2014 03:21:47.
+     1>Project "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML_bin\src\SFML\System\sfml-system.vcxproj" on node 2 (Rebuild target(s)).
+     1>CustomBuild:
+         Building Custom Rule C:/Users/Benjamin/Code/Github/TheAudioTale/SFML-2.1/src/SFML/System/CMakeLists.txt
+         CMake does not need to re-run because C:\Users\Benjamin\Code\Github\TheAudioTale\SFML_bin\src\SFML\System\CMakeFiles\generate.stamp is up-to-date.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\include" /I"C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src" /nologo /W3 /WX- /O2 /Ob2 /Oy- /D WIN32 /D _WINDOWS /D NDEBUG /D _CRT_SECURE_NO_DEPRECATE /D "CMAKE_INTDIR=\"Release\"" /D SFML_SYSTEM_EXPORTS /D _WINDLL /D _MBCS /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"sfml-system.dir\Release\\" /Fd"sfml-system.dir\Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\Clock.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\Err.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\Lock.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\Mutex.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\Sleep.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\String.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\Thread.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\ThreadLocal.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\Time.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\Win32\ClockImpl.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\Win32\MutexImpl.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\Win32\SleepImpl.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\Win32\ThreadImpl.cpp" "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\src\SFML\System\Win32\ThreadLocalImpl.cpp"
+         Clock.cpp
+         Err.cpp
+         Lock.cpp
+         Mutex.cpp
+         Sleep.cpp
+         String.cpp
+         Thread.cpp
+         ThreadLocal.cpp
+         Time.cpp
+         ClockImpl.cpp
+         MutexImpl.cpp
+         SleepImpl.cpp
+         ThreadImpl.cpp
+         ThreadLocalImpl.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Benjamin\Code\Github\TheAudioTale\SFML_bin\lib\Release\sfml-system-2.dll" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/lib/Release/sfml-system.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/lib/Release/sfml-system.lib" /MACHINE:X86 /SAFESEH  /machine:X86 /DLL "sfml-system.dir\Release\Clock.obj"
+         "sfml-system.dir\Release\Err.obj"
+         "sfml-system.dir\Release\Lock.obj"
+         "sfml-system.dir\Release\Mutex.obj"
+         "sfml-system.dir\Release\Sleep.obj"
+         "sfml-system.dir\Release\String.obj"
+         "sfml-system.dir\Release\Thread.obj"
+         "sfml-system.dir\Release\ThreadLocal.obj"
+         "sfml-system.dir\Release\Time.obj"
+         "sfml-system.dir\Release\ClockImpl.obj"
+         "sfml-system.dir\Release\MutexImpl.obj"
+         "sfml-system.dir\Release\SleepImpl.obj"
+         "sfml-system.dir\Release\ThreadImpl.obj"
+         "sfml-system.dir\Release\ThreadLocalImpl.obj"
+            Creating library C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/lib/Release/sfml-system.lib and object C:/Users/Benjamin/Code/Github/TheAudioTale/SFML_bin/lib/Release/sfml-system.exp
+         sfml-system.vcxproj -> C:\Users\Benjamin\Code\Github\TheAudioTale\SFML_bin\lib\Release\sfml-system-2.dll
+     1>Done Building Project "C:\Users\Benjamin\Code\Github\TheAudioTale\SFML_bin\src\SFML\System\sfml-system.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:05.60
