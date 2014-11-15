@@ -26,3 +26,12 @@
 *.exe
 *.out
 *.app
+
+# VS proj
+.sdf
+.opensdf
+.tlog
+$GIT_DIR/TheAudio Tale/The Audio Tale/Debug
+$GIT_DIR/TheAudio Tale/The Audio Tale/Release
+$GIT_DIR/TheAudio Tale/Debug
+$GIT_DIR/TheAudio Tale/Release
