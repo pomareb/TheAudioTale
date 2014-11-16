@@ -10,8 +10,7 @@ GraphicsManager::GraphicsManager(std::string Name, int sizeX, int sizeY)
 	this->mainWindow = new sf::RenderWindow(sf::VideoMode(this->winX, this->winY), this->windowName);
 	std::cout << "SFML window opened" << std::endl;
 	this->spriteLoader("sprite.png", wall);
-	this->spriteLoader("background2.png", background);
-	this->spriteLoader("background2.png", background2);
+	this->spriteLoader("background.png", background);
 	std::cout << "All sprites added sucessfully" << std::endl;
 }
 
@@ -49,23 +48,30 @@ void GraphicsManager::game()
 void GraphicsManager::backgroundDrawing()
 {
 	int temp;
-	int diff = winX - this->spriteMap[background].getTexture()->getSize().x;
-	int bg = this->spriteMap[background].getTexture()->getSize().x * -1;
+	int diff = (this->spriteMap[background].getTexture()->getSize().x / 3) - this->spriteMap[background].getTexture()->getSize().x;
 	std::cout << this->spriteMap[background].getPosition().x + this->spriteMap[background].getTexture()->getSize().x << std::endl;
-
+	this->spriteMap[background].move(backgroundSpeed, 0);
 	this->mainWindow->draw(this->spriteMap[background]);
+	
 	if (this->spriteMap[background].getPosition().x < diff)
-	{
-		temp = this->spriteMap[background].getPosition().x + this->spriteMap[background].getTexture()->getSize().x;
-		this->spriteMap[background2].setPosition(temp, (this->winY / 2) - 250);
-		this->spriteMap[background].move(backgroundSpeed, 0);
+	{	
+		this->spriteMap[background].setPosition(0, (this->winY / 2) - 250);
+		this->spriteMap[background].setColor(sf::Color(255, 0, 0));
 	}
-	else if (this->spriteMap[background].getPosition().x < bg)
-	{
-		this->spriteMap[background2].setPosition(this->spriteMap[background].getPosition().x + this->spriteMap[background].getTexture()->getSize().x, (this->winY / 2) - 250);
-	}
-	else
-		this->spriteMap[background].move(backgroundSpeed, 0);
+	//spritePulse(background);
+	
+}
+
+void GraphicsManager::spritePulse(SpriteList sprite)
+{
+	sf::Color temp;
+	temp = this->spriteMap[sprite].getColor();
+	if (temp.r < 250)
+		temp.r += 1;
+	if (temp.g < 250)
+		temp.g += 1;
+
+	this->spriteMap[sprite].setColor(temp);
 }
 
 void GraphicsManager::spriteLoader(std::string filename, SpriteList name)

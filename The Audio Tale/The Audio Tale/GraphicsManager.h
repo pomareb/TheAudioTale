@@ -26,19 +26,20 @@ class GraphicsManager
 	std::string windowName;
 	int winX;
 	int winY;
-	int RedId, GreenId, BlueId;
+	sf::Color generalColor;
 	float backgroundSpeed;
 	sf::RenderWindow *mainWindow;
 	std::map<SpriteList, sf::Sprite>	spriteMap;
 	std::list<sf::Texture>				textureList;
-	
+
+	void backgroundDrawing();
+	void drawSprite(std::string);
+	void spriteLoader(std::string, SpriteList);
+	void spritePulse(SpriteList);
 public:
 	GraphicsManager(std::string, int, int);
 	~GraphicsManager();
 	void game();
-	void spriteLoader(std::string, SpriteList);
-	void drawSprite(std::string);
 	void init();
-	void backgroundDrawing();
 };
 
