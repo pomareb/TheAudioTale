@@ -12,17 +12,19 @@
 #include <SFML/OpenGL.hpp>
 #include <SFML/Graphics.hpp>
 
-
+#include "Particle.h"
 enum SpriteList
 {
 	background,
-	background2,
+	player,
 	wall,
 	wall2
 };
 
 class GraphicsManager
 {
+	Particle particles;
+	sf::Clock mainClock;
 	std::string windowName;
 	int winX;
 	int winY;

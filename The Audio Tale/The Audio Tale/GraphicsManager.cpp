@@ -1,7 +1,7 @@
 #include "GraphicsManager.h"
 #include <iostream>
 
-GraphicsManager::GraphicsManager(std::string Name, int sizeX, int sizeY)
+GraphicsManager::GraphicsManager(std::string Name, int sizeX, int sizeY) : particles(1000)
 {
 	this->windowName = Name;
 	this->winX = sizeX;
@@ -21,7 +21,8 @@ GraphicsManager::~GraphicsManager()
 
 void GraphicsManager::init()
 {
-	this->backgroundSpeed = -1.0f;
+	this->mainClock.restart();
+	this->backgroundSpeed = -0.1f;
 	this->spriteMap[background].setPosition(0, (this->winY / 2) - 250);
 	this->spriteMap[background].setColor(sf::Color(0, 255, 0));
 }
@@ -40,7 +41,13 @@ void GraphicsManager::game()
 		//affichage
 		this->backgroundDrawing();
 		
-		this->mainWindow->draw(this->spriteMap[wall]);
+		sf::Vector2i mouse = sf::Mouse::getPosition(*(this->mainWindow));
+		particles.setEmitter(this->mainWindow->mapPixelToCoords(mouse));
+		sf::Time elapsed = mainClock.restart();
+		particles.update(elapsed);
+		this->mainWindow->draw(particles);
+
+		//this->mainWindow->draw(this->spriteMap[wall]);
 		this->mainWindow->display();
 	}
 }
@@ -88,3 +95,4 @@ void GraphicsManager::spriteLoader(std::string filename, SpriteList name)
 	sprite.setTexture(textureList.back());
 	this->spriteMap[name] = sprite;
 }
+
