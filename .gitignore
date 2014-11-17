@@ -20,7 +20,7 @@
 *.lai
 *.la
 *.a
-#*.lib
+*.lib
 
 # Executables
 *.exe
@@ -31,6 +31,7 @@
 *.sdf
 *.opensdf
 *.tlog
+*.log
 
 $GIT_DIR/The\ Audio\ Tale/The\ Audio\ Tale/Debug
 $GIT_DIR/The\ Audio\ Tale/The\ Audio\ Tale/Release
