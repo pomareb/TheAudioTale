@@ -1,15 +1,22 @@
-﻿Build started 04/11/2014 07:40:01.
-     1>Project "C:\Users\Benjamin\Code\Github\TheAudioTale\The Audio Tale\The Audio Tale\The Audio Tale.vcxproj" on node 2 (Build target(s)).
+﻿La génération a démarré 25/11/2014 08:22:46.
+     1>Projet "C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\The Audio Tale\The Audio Tale.vcxproj" sur le nœud 2 (Build cible(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Benjamin\Code\Github\TheAudioTale\SFML-2.1\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Release\The Audio Tale.pch" /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt audioParser.cpp FMODLoader.cpp Main.cpp
-         audioParser.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocnum(155): error C2857: '#include' statement specified with the /Ycstdafx.h command-line option was not found in the source file
-         FMODLoader.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocnum(155): error C2857: '#include' statement specified with the /Ycstdafx.h command-line option was not found in the source file
-         Main.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocmon(232): error C2857: '#include' statement specified with the /Ycstdafx.h command-line option was not found in the source file
-     1>Done Building Project "C:\Users\Benjamin\Code\Github\TheAudioTale\The Audio Tale\The Audio Tale\The Audio Tale.vcxproj" (Build target(s)) -- FAILED.
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\\..\SFML-2.1\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GraphicsManager.cpp
+         GraphicsManager.cpp
+     1>GraphicsManager.cpp(26): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+     1>GraphicsManager.cpp(70): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+     1>GraphicsManager.cpp(62): warning C4101: 'temp' : variable locale non référencée
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\Release\The Audio Tale.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\\..\SFML_bin\lib\Release" fmodex_vc.lib "sfml-audio.lib" "sfml-graphics.lib" "sfml-system.lib" "sfml-window.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\Release\The Audio Tale.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\Release\The Audio Tale.lib" /MACHINE:X86 /SAFESEH Release\audioParser.obj
+         Release\FMODLoader.obj
+         Release\GraphicsManager.obj
+         Release\Main.obj
+         Release\Particle.obj
+         Génération de code en cours
+         Fin de la génération du code
+         The Audio Tale.vcxproj -> C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\Release\The Audio Tale.exe
+     1>Génération du projet "C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\The Audio Tale\The Audio Tale.vcxproj" terminée (Build cible(s)).
 
-Build FAILED.
+La génération a réussi.
 
-Time Elapsed 00:00:01.62
+Temps écoulé 00:00:01.71

@@ -25,12 +25,17 @@ void GraphicsManager::init()
 	this->backgroundSpeed = -0.1f;
 	this->spriteMap[background].setPosition(0, (this->winY / 2) - 250);
 	this->spriteMap[background].setColor(sf::Color(0, 255, 0));
+	 
+	this->startLoad.loadSound("01.mp3", "01.mp3");
+	this->startLoad.playSound();
+	this->startLoad.playPauseChannel();
 }
 
 void GraphicsManager::game()
 {
 	while (this->mainWindow->isOpen())
 	{
+		startLoad.parse();
 		sf::Event event;
 		while (this->mainWindow->pollEvent(event))
 		{

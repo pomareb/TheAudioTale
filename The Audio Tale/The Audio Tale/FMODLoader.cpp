@@ -10,6 +10,27 @@ FMODLoader::FMODLoader()
 	std::cout << "SoundCard test is OK !" << std::endl;
 	this->initFMOD();
 	std::cout << "Init Finished, ready to play sounds" << std::endl;
+
+	// Load song
+	enableNormalize = false;
+	sampleSize = 64;
+
+	// Set beat detection parameters
+	beatThresholdVolume = 0.3f;
+	beatThresholdBar = 0;
+	beatSustain = 150;
+	beatPostIgnore = 250;
+	beatTrackCutoff = 10000;
+
+	spec = new float[sampleSize];
+
+	beatLastTick = 0;
+	beatIgnoreLastTick = 0;
+
+	frequency = 0;
+	volume = 0;
+
+	startTime = GetTickCount();
 };
 
 void FMODLoader::checkVersion()
@@ -74,26 +95,115 @@ void FMODLoader::FMODErrorCheck(FMOD_RESULT result)
 	if (result != FMOD_OK)
 	{
 		std::cout << "FMOD error! (" << result << ") " << FMOD_ErrorString(result) << std::endl;
+
 		exit(-1);
 	}
 };
 
-bool FMODLoader::loadSound(char* filename)
+bool FMODLoader::loadSound(char* filename, char* filetwo)
 {
-	system->createSound(filename, FMOD_DEFAULT, 0, &this->audio);
-	//system->createStream(filename, FMOD_DEFAULT, 0, &this->audioStream);
+	FMODErrorCheck(system->createStream(filename, FMOD_CREATESTREAM, 0, &this->audioStream));
+	FMODErrorCheck(system->createStream(filename, FMOD_CREATESTREAM, 0, &this->muteStream));
 	return(true);
 };
 
 bool FMODLoader::playSound()
 {
-	system->playSound(FMOD_CHANNEL_FREE, this->audio, false, NULL);
-//	system->playSound(FMOD_CHANNEL_FREE, this->audio, false, &this->channel);
+	FMODErrorCheck(system->playSound(FMOD_CHANNEL_FREE, this->audioStream, true, &channel));
+	FMODErrorCheck(system->playSound(FMOD_CHANNEL_FREE, this->muteStream, true, &muteChannel));
+	muteChannel->setMute(true);
 	return(true);
 };
 
+bool FMODLoader::playPauseChannel()
+{
+	bool isPaused;
+	channel->getPaused(&isPaused);
+	channel->setPaused(!isPaused);
+	muteChannel->setPaused(!isPaused);
+	return !isPaused;
+}
+
+void FMODLoader::parse()
+{
+	system->update();
+
+	// Frequency analysis
+	float *specLeft, *specRight;
+	specLeft = new float[sampleSize];
+	specRight = new float[sampleSize];
+	//getTempo
+	muteChannel->getFrequency(frequency);
+
+	//getAmplitude
+	muteChannel->getVolume(volume);
+
+	// Get average spectrum for left and right stereo channels
+	muteChannel->getSpectrum(specLeft, sampleSize, 0, FMOD_DSP_FFT_WINDOW_RECT);
+	muteChannel->getSpectrum(specRight, sampleSize, 1, FMOD_DSP_FFT_WINDOW_RECT);
+
+	for (int i = 0; i < sampleSize; i++)
+		spec[i] = (specLeft[i] + specRight[i]) / 2;
+
+	// Find max volume
+	auto maxIterator = std::max_element(&spec[0], &spec[sampleSize]);
+	maxVol = *maxIterator;
+
+	// Find frequency range of each array item
+	float hzRange = (44100 / 2) / static_cast<float>(sampleSize);
+
+	//detect beat
+	if (!enableNormalize)
+	{
+		if (spec[beatThresholdBar] >= beatThresholdVolume && beatLastTick == 0 && beatIgnoreLastTick == 0)
+		{
+			beatLastTick = startTime - GetTickCount();
+			beatTimes.push(beatLastTick);
+			std::cout << "BEATBEATBEATBEATBEATBEAT!" << std::endl;
+			while ((startTime - GetTickCount()) - beatTimes.front() > beatTrackCutoff)
+			{
+				beatTimes.pop();
+				if (beatTimes.size() == 0)
+					break;
+			}
+		}
+		else if (beatIgnoreLastTick == 0 && beatLastTick != 0)
+		{
+			beatLastTick = 0;
+			beatIgnoreLastTick = GetTickCount();
+		}
+
+		if (GetTickCount() - beatIgnoreLastTick >= beatPostIgnore)
+			beatIgnoreLastTick = 0;
+	}
+
+	// Predict BPM
+	float msPerBeat;
+
+	if (beatTimes.size() >= 2)
+	{
+		msPerBeat = (beatTimes.back() - beatTimes.front()) / static_cast<float>(beatTimes.size() - 1);
+		bpmEstimate = 60000 / msPerBeat;
+	}
+	else
+		bpmEstimate = 0;
+
+	//clear
+	delete[] specLeft;
+	delete[] specRight;
+}
 
 FMOD::Channel FMODLoader::getChannel()
 {
 	return *(this->channel);
 };
+
+FMOD::Channel FMODLoader::getMuteChannel()
+{
+	return *(this->muteChannel);
+};
+
+FMOD::System FMODLoader::getSystem()
+{
+	return *(this->system);
+}
