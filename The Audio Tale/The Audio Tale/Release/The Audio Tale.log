@@ -1,11 +1,11 @@
-﻿La génération a démarré 25/11/2014 08:22:46.
+﻿La génération a démarré 27/11/2014 03:33:15.
      1>Projet "C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\The Audio Tale\The Audio Tale.vcxproj" sur le nœud 2 (Build cible(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\\..\SFML-2.1\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GraphicsManager.cpp
-         GraphicsManager.cpp
-     1>GraphicsManager.cpp(26): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-     1>GraphicsManager.cpp(70): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-     1>GraphicsManager.cpp(62): warning C4101: 'temp' : variable locale non référencée
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\\..\SFML-2.1\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt FMODLoader.cpp
+         FMODLoader.cpp
+     1>FMODLoader.cpp(34): warning C4244: '=' : conversion de 'DWORD' en 'float', perte possible de données
+     1>FMODLoader.cpp(197): warning C4244: 'argument' : conversion de 'float' en 'const int', perte possible de données
+     1>FMODLoader.cpp(214): warning C4244: '=' : conversion de 'DWORD' en 'float', perte possible de données
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\Release\The Audio Tale.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\\..\SFML_bin\lib\Release" fmodex_vc.lib "sfml-audio.lib" "sfml-graphics.lib" "sfml-system.lib" "sfml-window.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\Release\The Audio Tale.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\Release\The Audio Tale.lib" /MACHINE:X86 /SAFESEH Release\audioParser.obj
          Release\FMODLoader.obj
@@ -19,4 +19,4 @@
 
 La génération a réussi.
 
-Temps écoulé 00:00:01.71
+Temps écoulé 00:00:01.36

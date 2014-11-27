@@ -26,9 +26,9 @@ void GraphicsManager::init()
 	this->spriteMap[background].setPosition(0, (this->winY / 2) - 250);
 	this->spriteMap[background].setColor(sf::Color(0, 255, 0));
 	 
-	this->startLoad.loadSound("01.mp3", "01.mp3");
+	this->startLoad.loadSound("marcus_kellis_theme.mp3", "marcus_kellis_theme.mp3");
 	this->startLoad.playSound();
-	this->startLoad.playPauseChannel();
+	this->startLoad.playPauseChannels();
 }
 
 void GraphicsManager::game()
@@ -61,7 +61,7 @@ void GraphicsManager::backgroundDrawing()
 {
 	int temp;
 	int diff = (this->spriteMap[background].getTexture()->getSize().x / 3) - this->spriteMap[background].getTexture()->getSize().x;
-	std::cout << this->spriteMap[background].getPosition().x + this->spriteMap[background].getTexture()->getSize().x << std::endl;
+	//std::cout << this->spriteMap[background].getPosition().x + this->spriteMap[background].getTexture()->getSize().x << std::endl;
 	this->spriteMap[background].move(backgroundSpeed, 0);
 	this->mainWindow->draw(this->spriteMap[background]);
 	
