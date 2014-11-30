@@ -13,6 +13,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "Particle.h"
+#include "FMODLoader.h"
+
 enum SpriteList
 {
 	background,
@@ -23,6 +25,7 @@ enum SpriteList
 
 class GraphicsManager
 {
+	FMODLoader startLoad;
 	Particle particles;
 	sf::Clock mainClock;
 	std::string windowName;
