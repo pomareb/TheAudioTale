@@ -43,8 +43,7 @@ class FMODLoader
 	float beatLastTick;
 	float beatIgnoreLastTick;
 	float startTime;
-	bool isItBeat;
-	int cnt;
+
 	//bpm
 	float bpmEstimate;
 
@@ -64,13 +63,10 @@ public:
 	void FMODErrorCheck(FMOD_RESULT result);
 	bool loadSound(char* filename, char* filetwo);
 	bool playSound();
-	bool playMuteChannel();
-	bool playPauseChannels();
+	bool playPauseChannel();
 	void parse();
 
-	bool getIsItABeat();
-	float getFrequency();
-	float getVolume();
-	float getBPM();
-	float *getSpec();
+	FMOD::Channel getChannel();
+	FMOD::Channel getMuteChannel();
+	FMOD::System getSystem();
 };
