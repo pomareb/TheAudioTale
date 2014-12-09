@@ -50,6 +50,13 @@ void GraphicsManager::game()
 	while (this->mainWindow->isOpen())
 	{
 		startLoad.parse();
+		
+		bool beatNow = startLoad.isBeatNow();
+		float frequency = startLoad.getFrequency();
+		float volume = startLoad.getVolume();
+		float bpmEstimate = startLoad.getBpmEstimate();
+		float maxVol = startLoad.getMaxVol();
+		
 		sf::Event event;
 		while (this->mainWindow->pollEvent(event))
 		{

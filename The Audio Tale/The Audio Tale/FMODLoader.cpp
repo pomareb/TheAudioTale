@@ -27,8 +27,12 @@ FMODLoader::FMODLoader()
 	beatLastTick = 0;
 	beatIgnoreLastTick = 0;
 
-	frequency = 0;
 	volume = 0;
+	frequency = 0;
+
+	maxVol = 0;
+
+	beatNow = false;
 
 	startTime = GetTickCount();
 };
@@ -124,6 +128,35 @@ bool FMODLoader::playPauseChannel()
 	return !isPaused;
 }
 
+bool FMODLoader::isBeatNow()
+{
+	return beatNow;
+}
+
+float FMODLoader::getFrequency()
+{
+	return frequency;
+}
+
+float FMODLoader::getVolume()
+{
+	return volume;
+}
+
+float *FMODLoader::getSpec()
+{
+	return spec;
+}
+
+float FMODLoader::getBpmEstimate()
+{
+	return bpmEstimate;
+}
+
+float FMODLoader::getMaxVol()
+{
+	return maxVol;
+}
 void FMODLoader::parse()
 {
 	system->update();
@@ -132,11 +165,12 @@ void FMODLoader::parse()
 	float *specLeft, *specRight;
 	specLeft = new float[sampleSize];
 	specRight = new float[sampleSize];
+	
 	//getTempo
-	muteChannel->getFrequency(frequency);
-
+	channel->getFrequency(&frequency);
+	
 	//getAmplitude
-	muteChannel->getVolume(volume);
+	muteChannel->getVolume(&volume);
 
 	// Get average spectrum for left and right stereo channels
 	muteChannel->getSpectrum(specLeft, sampleSize, 0, FMOD_DSP_FFT_WINDOW_RECT);
@@ -159,6 +193,7 @@ void FMODLoader::parse()
 		{
 			beatLastTick = startTime - GetTickCount();
 			beatTimes.push(beatLastTick);
+			beatNow = true;
 			std::cout << "BEATBEATBEATBEATBEATBEAT!" << std::endl;
 			while ((startTime - GetTickCount()) - beatTimes.front() > beatTrackCutoff)
 			{
@@ -169,6 +204,7 @@ void FMODLoader::parse()
 		}
 		else if (beatIgnoreLastTick == 0 && beatLastTick != 0)
 		{
+			beatNow = false;
 			beatLastTick = 0;
 			beatIgnoreLastTick = GetTickCount();
 		}

@@ -23,9 +23,11 @@ class FMODLoader
 	FMOD::Channel		*channel;
 	FMOD::Channel		*muteChannel;
 
+	bool beatNow;
+
 	//tempo
-	float *frequency;
-	float *volume;
+	float frequency;
+	float volume;
 
 	//frequency tab
 	float *spec;
@@ -65,6 +67,13 @@ public:
 	bool playSound();
 	bool playPauseChannel();
 	void parse();
+	
+	bool isBeatNow();
+	float getFrequency();
+	float getVolume();
+	float *getSpec();
+	float getBpmEstimate();
+	float getMaxVol();
 
 	FMOD::Channel getChannel();
 	FMOD::Channel getMuteChannel();
