@@ -18,6 +18,16 @@ GraphicsManager::GraphicsManager(std::string Name, int sizeX, int sizeY) : parti
 	this->spriteLoader("top.png", borderTop);
 	this->spriteLoader("bot.png", borderBot);
 	std::cout << "All sprites added sucessfully" << std::endl;
+	this->isColling = false;
+	this->lastIsColling = false;
+	this->score = 0;
+	fnt.loadFromFile("gilsanub.ttf");
+	this->txt.setFont(fnt);
+	this->txt.setString("Score : ");
+	this->txt.setCharacterSize(24);
+	this->txt.setColor(sf::Color::White);
+	this->txt.setStyle(sf::Text::Bold | sf::Text::Underlined);
+	this->txt.setPosition(25,100);
 }
 
 
@@ -36,9 +46,53 @@ void GraphicsManager::init()
 	this->spriteMap[borderBot].setPosition(0, (this->winY / 2) + 215);
 //	this->spriteMap[wall].;
 //	this->spriteMap[wallTop].setColor(sf::Color(40, 40, 40));
-	this->spriteMap[wallTop].setPosition(this->winX, (this->winY / 2) - 250);
-	this->spriteMap[wallBot].setPosition(this->winX - (this->winX / 3), (this->winY / 2));
+	this->spriteMap[wallTop].setPosition(-400, (this->winY / 2) - 250);
+	this->spriteMap[wallBot].setPosition(-400, (this->winY / 2));
 
+	// init top sprite pool
+	this->wallsTop[1].center.x = -400;
+	this->wallsTop[1].center.y = (this->winY / 2) - 250;
+	this->wallsTop[1].pos.x = -400;
+	this->wallsTop[1].pos.y = (this->winY / 2) - 250;
+	this->wallsTop[1].type = wallTop;
+	this->wallsTop[2].center.x = -400;
+	this->wallsTop[2].center.y = (this->winY / 2) - 250;
+	this->wallsTop[2].pos.x = -400;
+	this->wallsTop[2].pos.y = (this->winY / 2) - 250;
+	this->wallsTop[2].type = wallTop;
+	this->wallsTop[3].pos.x = -400;
+	this->wallsTop[3].center.x = -400;
+	this->wallsTop[3].center.y = (this->winY / 2) - 250;
+	this->wallsTop[3].pos.y = (this->winY / 2) - 250;
+	this->wallsTop[3].type = wallTop;
+	this->wallsTop[4].center.x = -400;
+	this->wallsTop[4].center.y = (this->winY / 2) - 250;
+	this->wallsTop[4].pos.x = -400;
+	this->wallsTop[4].pos.y = (this->winY / 2) - 250;
+	this->wallsTop[4].type = wallTop;
+
+	// init bot sprite pool
+	this->wallsBot[1].center.x = -400;
+	this->wallsBot[1].center.y = (this->winY / 2) + 250;
+	this->wallsBot[1].pos.x = -400;
+	this->wallsBot[1].pos.y = (this->winY / 2);
+	this->wallsBot[1].type = wallBot;
+	this->wallsBot[2].center.x = -400;
+	this->wallsBot[2].center.y = (this->winY / 2) + 250;
+	this->wallsBot[2].pos.x = -400;
+	this->wallsBot[2].pos.y = (this->winY / 2);
+	this->wallsBot[2].type = wallBot;
+	this->wallsBot[3].center.x = -400;
+	this->wallsBot[3].center.y = (this->winY / 2) + 250;
+	this->wallsBot[3].pos.x = -400;
+	this->wallsBot[3].pos.y = (this->winY / 2);
+	this->wallsBot[3].type = wallBot;
+	this->wallsBot[4].center.x = -400;
+	this->wallsBot[4].center.y = (this->winY / 2) + 250;
+	this->wallsBot[4].pos.x = -400;
+	this->wallsBot[4].pos.y = (this->winY / 2);
+	this->wallsBot[4].type = wallBot;
+	
 	// init du son
 	this->startLoad.loadSound("01.mp3", "01.mp3");
 	this->startLoad.playSound();
@@ -68,7 +122,9 @@ void GraphicsManager::game()
 		
 		this->mainWindow->clear(sf::Color::Black);
 		//affichage
-		this->backgroundDrawing();
+		this->backgroundDrawing(startLoad.getBpmEstimate());
+		if (this->startLoad.isBeatNow())
+			this->wallSpawn();
 		this->wallDrawing();
 		//sf::Vector2i mouse = sf::Mouse::getPosition(*(this->mainWindow));
 		particles.setEmitter(*(this->playerPos));
@@ -76,7 +132,17 @@ void GraphicsManager::game()
 		particles.update(elapsed);
 		this->mainWindow->draw(particles);
 		this->borderDrawing();
-		//this->mainWindow->draw(this->spriteMap[wall]);
+
+		this->lastIsColling = this->isColling;
+		if (this->wallCollider() == true)
+			this->isColling == true;
+		if (this->isColling == false && this->lastIsColling == true)
+			this->score = this->score - (this->score / 15);
+		this->score += (pow(sqrt(this->playerPos->y - (this->winY / 2)), 2) / 100);
+		std::stringstream sstm;
+		sstm << "Score : " << score;
+		this->txt.setString(sstm.str());// +this->score);
+		this->mainWindow->draw(this->txt);
 		this->mainWindow->display();
 	}
 }
@@ -84,19 +150,64 @@ void GraphicsManager::game()
 
 void GraphicsManager::wallSpawn()
 {
+	int i = 1;
+	std::cout << "wanna create wall" << std::endl;
+	while (i <= 4)
+	{
+		if (this->wallsTop[i].pos.x == -400)
+		{
+			std::cout << "spawned Top" << std::endl;
+			this->wallsTop[i].pos.x = this->winX + 150;
+			//this->wallsTop[i].pos.y = (this->winY / 2) - 250;
+			return;
+		}
+		else if (this->wallsBot[i].pos.x  == -400)
+		{
+			std::cout << "spawned Bot" << std::endl;
+			this->wallsBot[i].pos.x = this->winX + 150;
+			//this->wallsBot[i].pos.y = this->winY / 2;
+			return;
+		}
+		i++;
+	}
+	/*
 	if (this->spriteMap[wallBot].getPosition().x == -400)
 	{
 		this->spriteMap[wallBot].setPosition(this->winX + 150, (this->winY / 2));
 	}
-	else if (this->spriteMap[wallBot].getPosition().x == -400)
+	else if (this->spriteMap[wallTop].getPosition().x == -400)
 	{
 		this->spriteMap[wallTop].setPosition(this->winX + 150, (this->winY / 2) - 250);
-	}
+	}*/
 }
 
 void GraphicsManager::wallDrawing()
 {
-	int temp;
+	int i = 1;
+
+	while (i <= 4)
+	{
+		if (this->wallsTop[i].pos.x > -400)
+		{
+			this->wallsTop[i].pos.x -= 1;// wallSpeed;
+			this->wallsTop[i].center.x = this->wallsTop[i].pos.x + 200;
+			this->spriteMap[wallTop].setPosition(this->wallsTop[i].pos);
+			this->mainWindow->draw(this->spriteMap[wallTop]);
+		}
+		else
+			this->wallsTop[i].pos.x = -400.0;
+		if (this->wallsBot[i].pos.x > -400)
+		{
+			this->wallsBot[i].pos.x -= 1;// wallSpeed;
+			this->wallsBot[i].center.x = this->wallsBot[i].pos.x + 200;
+			this->spriteMap[wallBot].setPosition(this->wallsBot[i].pos);
+			this->mainWindow->draw(this->spriteMap[wallBot]);
+		}
+		else
+			this->wallsBot[i].pos.x = -400.0;
+		i++;
+	}
+	/*int temp;
 	int diff;
 
 	if (this->spriteMap[wallBot].getPosition().x != -400)
@@ -105,7 +216,7 @@ void GraphicsManager::wallDrawing()
 		//std::cout << this->spriteMap[wall].getPosition().x + this->spriteMap[wall].getTexture()->getSize().x << std::endl;
 		this->spriteMap[wallBot].move(wallSpeed, 0);
 		this->mainWindow->draw(this->spriteMap[wallBot]);
-
+		this->spriteMap[wallBot].move(200, 0);
 		if (this->spriteMap[wallBot].getPosition().x < diff)
 		{
 			this->spriteMap[wallBot].setPosition(-400, (this->winY / 2));
@@ -122,10 +233,33 @@ void GraphicsManager::wallDrawing()
 		{
 			this->spriteMap[wallTop].setPosition(-400, (this->winY / 2) - 250);
 		}
-	}
+	}*/
 }
 
-void GraphicsManager::backgroundDrawing()
+bool GraphicsManager::wallCollider()
+{
+	int i = 1;
+
+	while (i <= 4)
+	{
+		//std::cout << "TOP COLLIDER TRIGGERED / " << i << " - dist : " << sqrt(pow(this->wallsTop[i].center.x - playerPos->x, 2) * pow(this->wallsTop[i].center.y - playerPos->y, 2)) << "center :" << this->wallsTop[i].center.x << " - " << this->wallsTop[i].center.y << std::endl;
+		if (sqrt(pow(this->wallsTop[i].center.x - playerPos->x, 2) + pow(this->wallsTop[i].center.y - playerPos->y, 2)) < 185.0)
+		{
+//			std::cout << "TOP COLLIDER TRIGGERED / " << i << " - dist : " << sqrt(pow(this->wallsTop[i].center.x - playerPos->x, 2) * pow(this->wallsTop[i].center.y - playerPos->y, 2)) << "center :" << this->wallsTop[i].center.x << " - " << this->wallsTop[i].center.y<< std::endl;
+			return true;
+		}
+		if (sqrt(pow(this->wallsBot[i].center.x - playerPos->x, 2) + pow(this->wallsBot[i].center.y - playerPos->y, 2)) < 215.0)
+		{
+//			std::cout << "BOT COLLIDER TRIGGERED / " << i << " - dist : " << sqrt(pow(this->wallsTop[i].center.x - playerPos->x, 2) * pow(this->wallsTop[i].center.y - playerPos->y, 2)) << "center :" << this->wallsTop[i].center.x << " - " << this->wallsTop[i].center.y << std::endl;
+			return true;
+		}
+		i++;
+	}
+	return false;
+
+}
+
+void GraphicsManager::backgroundDrawing(float bpm)
 {
 	int temp;
 	int diff = (this->spriteMap[background].getTexture()->getSize().x / 3) - this->spriteMap[background].getTexture()->getSize().x;
@@ -135,7 +269,7 @@ void GraphicsManager::backgroundDrawing()
 	if (this->spriteMap[background].getPosition().x < diff)
 	{	
 		this->spriteMap[background].setPosition(0, (this->winY / 2) - 250);
-		//this->spriteMap[background].setColor(sf::Color(255, 0, 0));
+		this->spriteMap[background].setColor(sf::Color(196, 80 + (bpm / 2), 0));
 	}
 	//spritePulse(background);
 	

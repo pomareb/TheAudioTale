@@ -19,8 +19,9 @@ FMODLoader::FMODLoader()
 	beatThresholdVolume = 0.3f;
 	beatThresholdBar = 0;
 	beatSustain = 150;
-	beatPostIgnore = 250;
+	beatPostIgnore = 500;
 	beatTrackCutoff = 10000;
+	bpmEstimate = 60;
 
 	spec = new float[sampleSize];
 
@@ -194,7 +195,7 @@ void FMODLoader::parse()
 			beatLastTick = startTime - GetTickCount();
 			beatTimes.push(beatLastTick);
 			beatNow = true;
-			std::cout << "BEATBEATBEATBEATBEATBEAT!" << std::endl;
+			//std::cout << "BEATBEATBEATBEATBEATBEAT!" << std::endl;
 			while ((startTime - GetTickCount()) - beatTimes.front() > beatTrackCutoff)
 			{
 				beatTimes.pop();

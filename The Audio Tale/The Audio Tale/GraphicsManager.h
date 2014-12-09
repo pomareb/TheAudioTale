@@ -3,6 +3,8 @@
 #include <list>
 #include <string>
 #include <map>
+#include <iostream>
+#include <sstream>
 
 //graphics includes
 #include <windows.h>
@@ -27,18 +29,25 @@ enum SpriteList
 
 struct wall
 {
-	sf::Vector2f	pos;
+	sf::Vector2<float>	pos;
+	sf::Vector2<float>	center;
 	SpriteList		type;
 };
 
 class GraphicsManager
 {
+	sf::Font fnt;
+	sf::Text txt;
+	int score;
+
 	float wallSpeed;
 	float backgroundSpeed;
 
 	sf::Vector2<float> *playerPos;
 	int isJumping;
 	int isSquatting;
+	bool isColling;
+	bool lastIsColling;
 
 	FMODLoader startLoad;
 	Particle particles;
@@ -50,10 +59,13 @@ class GraphicsManager
 	sf::RenderWindow *mainWindow;
 	std::map<SpriteList, sf::Sprite>	spriteMap;
 	std::list<sf::Texture>				textureList;
+	std::map<int, wall>					wallsTop;
+	std::map<int, wall>					wallsBot;
 
-	void backgroundDrawing();
+	void backgroundDrawing(float);
 	void borderDrawing();
 	void wallDrawing();
+	bool wallCollider();
 	void wallSpawn();
 	void drawSprite(std::string);
 	void spriteLoader(std::string, SpriteList);
