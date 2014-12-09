@@ -1,6 +1,6 @@
 #include "Particle.h"
 
-Particle::Particle(unsigned int maxParticles) : vertices(sf::Points, maxParticles), emitter(0,0), Elems(maxParticles)
+Particle::Particle(unsigned int maxParticles) : vertices(sf::Points, maxParticles), emitter(0, 0), Elems(maxParticles)
 {
 	this->elemNbr = maxParticles;
 	this->lifeTime = sf::seconds(3);
@@ -26,10 +26,10 @@ void Particle::update(sf::Time elapsed)
 
 void Particle::resetParticle(std::size_t index)
 {
-	float angle = (std::rand() % 360) * 3.14f / 180.f;
-	float speed = (std::rand() % 50) + 50.f;
+	float angle = (180 - 25/2 + (std::rand() % 25)) * 3.14f / 180.f;
+	float speed = (std::rand() % 50) + 400.f;
 	Elems[index].velocity = sf::Vector2f(std::cos(angle) * speed, std::sin(angle) * speed);
-	Elems[index].lifeTime = sf::milliseconds((std::rand() % 2000) + 1000);
+	Elems[index].lifeTime = sf::milliseconds((std::rand() % 1000) + 500);
 	vertices[index].position = emitter;
 }
 Particle::~Particle()

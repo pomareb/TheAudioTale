@@ -19,12 +19,27 @@ enum SpriteList
 {
 	background,
 	player,
-	wall,
-	wall2
+	wallBot,
+	wallTop,
+	borderTop,
+	borderBot
+};
+
+struct wall
+{
+	sf::Vector2f	pos;
+	SpriteList		type;
 };
 
 class GraphicsManager
 {
+	float wallSpeed;
+	float backgroundSpeed;
+
+	sf::Vector2<float> *playerPos;
+	int isJumping;
+	int isSquatting;
+
 	FMODLoader startLoad;
 	Particle particles;
 	sf::Clock mainClock;
@@ -32,15 +47,19 @@ class GraphicsManager
 	int winX;
 	int winY;
 	sf::Color generalColor;
-	float backgroundSpeed;
 	sf::RenderWindow *mainWindow;
 	std::map<SpriteList, sf::Sprite>	spriteMap;
 	std::list<sf::Texture>				textureList;
 
 	void backgroundDrawing();
+	void borderDrawing();
+	void wallDrawing();
+	void wallSpawn();
 	void drawSprite(std::string);
 	void spriteLoader(std::string, SpriteList);
 	void spritePulse(SpriteList);
+	void jump();
+	void squat();
 public:
 	GraphicsManager(std::string, int, int);
 	~GraphicsManager();
