@@ -66,6 +66,7 @@ public:
 	bool loadSound(char* filename, char* filetwo);
 	bool playSound();
 	bool playPauseChannel();
+	void delayedStartChannels(float time);
 	void parse();
 	
 	bool isBeatNow();

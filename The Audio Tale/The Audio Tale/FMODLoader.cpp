@@ -120,6 +120,13 @@ bool FMODLoader::playSound()
 	return(true);
 };
 
+void FMODLoader::delayedStartChannels(float time)
+{
+	muteChannel->setPaused(false);
+	Sleep(time);
+	channel->setPaused(false);
+}
+
 bool FMODLoader::playPauseChannel()
 {
 	bool isPaused;
