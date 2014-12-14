@@ -109,6 +109,11 @@ bool FMODLoader::loadSound(char* filename, char* filetwo)
 {
 	FMODErrorCheck(system->createStream(filename, FMOD_CREATESTREAM, 0, &this->audioStream));
 	FMODErrorCheck(system->createStream(filename, FMOD_CREATESTREAM, 0, &this->muteStream));
+	this->audioStream->setMode(FMOD_LOOP_NORMAL);
+	this->audioStream->setLoopCount(-1);
+	this->muteStream->setMode(FMOD_LOOP_NORMAL);
+	this->muteStream->setLoopCount(-1);
+
 	return(true);
 };
 

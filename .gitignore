@@ -39,3 +39,10 @@ $GIT_DIR/The\ Audio\ Tale/The\ Audio\ Tale/Release
 $GIT_DIR/The\ Audio\ Tale/Debug
 $GIT_DIR/The\ Audio\ Tale/
 $GIT_DIR/The\ Audio\ Tale/Release
+*.suo
+*.pdb
+*.tlog
+*.log
+*.pdb
+*.vcxproj
+*.db

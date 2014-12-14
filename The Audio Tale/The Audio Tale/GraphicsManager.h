@@ -19,6 +19,7 @@
 
 enum SpriteList
 {
+	TATmenu,
 	background,
 	player,
 	wallBot,
@@ -36,6 +37,7 @@ struct wall
 
 class GraphicsManager
 {
+	bool isMenu;
 	sf::Font fnt;
 	sf::Text txt;
 	int score;
@@ -46,8 +48,8 @@ class GraphicsManager
 	sf::Vector2<float> *playerPos;
 	int isJumping;
 	int isSquatting;
-	bool isColling;
-	bool lastIsColling;
+	bool isColliding;
+	bool lastIsCollididng;
 
 	FMODLoader startLoad;
 	Particle particles;
@@ -72,10 +74,14 @@ class GraphicsManager
 	void spritePulse(SpriteList);
 	void jump();
 	void squat();
+
+	void launch();
+	void game();
+	void menu();
 public:
 	GraphicsManager(std::string, int, int);
 	~GraphicsManager();
-	void game();
+	void loop();
 	void init();
 };
 

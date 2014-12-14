@@ -17,8 +17,8 @@
 
 int main()
 {
-	GraphicsManager graph(std::string("The Audio Tale"), 1800, 800);
+	GraphicsManager graph(std::string("The Audio Tale"), 1500, 750);
 	graph.init();
-	graph.game();
+	graph.loop();
 	return (0);
 }

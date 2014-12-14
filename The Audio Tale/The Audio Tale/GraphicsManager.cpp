@@ -1,7 +1,7 @@
 #include "GraphicsManager.h"
 #include <iostream>
 
-GraphicsManager::GraphicsManager(std::string Name, int sizeX, int sizeY) : particles(4000)
+GraphicsManager::GraphicsManager(std::string Name, int sizeX, int sizeY) : particles(4000, sf::Color(255,255,255))
 {
 	this->isJumping = 0;
 	this->windowName = Name;
@@ -17,9 +17,10 @@ GraphicsManager::GraphicsManager(std::string Name, int sizeX, int sizeY) : parti
 	this->spriteLoader("background.png", background);
 	this->spriteLoader("top.png", borderTop);
 	this->spriteLoader("bot.png", borderBot);
+	this->spriteLoader("Menu.png", TATmenu);
 	std::cout << "All sprites added sucessfully" << std::endl;
-	this->isColling = false;
-	this->lastIsColling = false;
+	this->isColliding = false;
+	this->lastIsCollididng = false;
 	this->score = 0;
 	fnt.loadFromFile("gilsanub.ttf");
 	this->txt.setFont(fnt);
@@ -37,6 +38,7 @@ GraphicsManager::~GraphicsManager()
 
 void GraphicsManager::init()
 {
+	this->isMenu = true;
 	this->mainClock.restart();
 	this->backgroundSpeed = -0.5f;
 	this->wallSpeed = 3 * this->backgroundSpeed;
@@ -94,101 +96,169 @@ void GraphicsManager::init()
 	this->wallsBot[4].type = wallBot;
 	
 	// init du son
-	this->startLoad.loadSound("01.mp3", "01.mp3");
+	
+}
+
+
+void GraphicsManager::loop()
+{
+	while (this->mainWindow->isOpen())
+	{
+		if (this->isMenu == true)
+			this->menu();
+		else
+			this->game();
+	}
+}
+
+void GraphicsManager::menu()
+{
+	sf::Event event;
+	while (this->mainWindow->pollEvent(event))
+	{
+		if (event.type == sf::Event::Closed)
+			this->mainWindow->close();
+	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		int x = sf::Mouse::getPosition(*(this->mainWindow)).x;
+		int y = sf::Mouse::getPosition(*(this->mainWindow)).y;
+		// launch game
+		std::cout << ((this->winX / 2) - (1920 / 2) + 650) << " -- " << (this->winX / 2) - (1920 / 2) + 850 << std::endl;
+		if (x >= ((this->winX / 2) - (1920 / 2) + 650) && x <= (this->winX / 2) - (1920 / 2) + 850)
+		{
+			// play
+			if (y > ((this->winY / 2) - (1080 / 2) + 500) && y < ((this->winY / 2) - (1080 / 2) + 550))
+			{
+				this->isMenu = false;
+				this->launch();
+			}
+		}
+	}
+	this->spriteMap[TATmenu].setPosition((this->winX / 2) - (1920 / 2), (this->winY / 2) - (1080 / 2));
+	this->mainWindow->draw(this->spriteMap[TATmenu]);
+	this->mainWindow->display();
+
+}
+/*
+void GraphicsManager::Credits()
+{
+
+}
+void GraphicsManager::()
+{
+
+}
+*/
+void GraphicsManager::launch()
+{
+	this->startLoad.loadSound("trauma.mp3", "trauma.mp3");
 	this->startLoad.playSound();
 	this->startLoad.playPauseChannel();
+	this->startLoad.delayedStartChannels(250.0);
 }
 
 void GraphicsManager::game()
 {
-	while (this->mainWindow->isOpen())
-	{
 		startLoad.parse();
 		
-		bool beatNow = startLoad.isBeatNow();
-		float frequency = startLoad.getFrequency();
-		float volume = startLoad.getVolume();
-		float bpmEstimate = startLoad.getBpmEstimate();
-		float maxVol = startLoad.getMaxVol();
+	bool beatNow = startLoad.isBeatNow();
+	float frequency = startLoad.getFrequency();
+	float volume = startLoad.getVolume();
+	float bpmEstimate = startLoad.getBpmEstimate();
+	float maxVol = startLoad.getMaxVol();
 		
-		sf::Event event;
-		while (this->mainWindow->pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				this->mainWindow->close();
-		}
-		this->jump();
-		this->squat();
-		
-		this->mainWindow->clear(sf::Color::Black);
-		//affichage
-		this->backgroundDrawing(startLoad.getBpmEstimate());
-		if (this->startLoad.isBeatNow())
-			this->wallSpawn();
-		this->wallDrawing();
-		//sf::Vector2i mouse = sf::Mouse::getPosition(*(this->mainWindow));
-		particles.setEmitter(*(this->playerPos));
-		sf::Time elapsed = mainClock.restart();
-		particles.update(elapsed);
-		this->mainWindow->draw(particles);
-		this->borderDrawing();
-
-		this->lastIsColling = this->isColling;
-		if (this->wallCollider() == true)
-			this->isColling == true;
-		if (this->isColling == false && this->lastIsColling == true)
-			this->score = this->score - (this->score / 15);
-		this->score += (pow(sqrt(this->playerPos->y - (this->winY / 2)), 2) / 100);
-		std::stringstream sstm;
-		sstm << "Score : " << score;
-		this->txt.setString(sstm.str());// +this->score);
-		this->mainWindow->draw(this->txt);
-		this->mainWindow->display();
+	sf::Event event;
+	while (this->mainWindow->pollEvent(event))
+	{
+		if (event.type == sf::Event::Closed)
+			this->mainWindow->close();
 	}
+	this->jump();
+	this->squat();
+		
+
+	this->lastIsCollididng = this->isColliding;
+	this->isColliding = false;
+	if (this->wallCollider() == true)
+		this->isColliding = true;
+	if (this->isColliding == false && this->lastIsCollididng == true)
+		this->score = this->score - (this->score / 15);
+	this->score += (abs(this->playerPos->y - (this->winY / 2)) / 100);
+	std::stringstream sstm;
+	sstm << "Score : " << score;
+	this->txt.setString(sstm.str());
+
+	this->mainWindow->clear(sf::Color::Black);
+	//affichage
+	this->backgroundDrawing(startLoad.getBpmEstimate());
+	if (this->startLoad.isBeatNow())
+		this->wallSpawn();
+	this->wallDrawing();
+	//sf::Vector2i mouse = sf::Mouse::getPosition(*(this->mainWindow));
+	particles.setEmitter(*(this->playerPos));
+	sf::Time elapsed = mainClock.restart();
+	if (this->isColliding == true)
+		this->particles.setColor(sf::Color(255,64,48));
+	else
+		this->particles.setColor(sf::Color(128,128,128));
+		
+	particles.update(elapsed);
+	this->mainWindow->draw(particles);
+	this->borderDrawing();
+
+		
+
+	this->mainWindow->draw(this->txt);
+	this->mainWindow->display();
 }
 
 
 void GraphicsManager::wallSpawn()
 {
 	int i = 1;
-	std::cout << "wanna create wall" << std::endl;
 	while (i <= 4)
 	{
 		if (this->wallsTop[i].pos.x == -400)
 		{
-			std::cout << "spawned Top" << std::endl;
 			this->wallsTop[i].pos.x = this->winX + 150;
 			//this->wallsTop[i].pos.y = (this->winY / 2) - 250;
 			return;
 		}
 		else if (this->wallsBot[i].pos.x  == -400)
 		{
-			std::cout << "spawned Bot" << std::endl;
 			this->wallsBot[i].pos.x = this->winX + 150;
 			//this->wallsBot[i].pos.y = this->winY / 2;
 			return;
 		}
 		i++;
 	}
-	/*
-	if (this->spriteMap[wallBot].getPosition().x == -400)
-	{
-		this->spriteMap[wallBot].setPosition(this->winX + 150, (this->winY / 2));
-	}
-	else if (this->spriteMap[wallTop].getPosition().x == -400)
-	{
-		this->spriteMap[wallTop].setPosition(this->winX + 150, (this->winY / 2) - 250);
-	}*/
+
 }
 
 void GraphicsManager::wallDrawing()
 {
 	int i = 1;
 
+	if (this->isColliding == true)
+	{
+		this->spriteMap[wallTop].setColor(sf::Color(255, 128, 128));
+		this->spriteMap[wallBot].setColor(sf::Color(255, 128, 128));
+	}
+	else
+	{
+		this->spriteMap[wallTop].setColor(sf::Color(255, 255, 255));
+		this->spriteMap[wallBot].setColor(sf::Color(255, 255, 255));
+	}
 	while (i <= 4)
 	{
 		if (this->wallsTop[i].pos.x > -400)
 		{
+			if (this->wallsTop[i].pos.x < 400)
+				this->spriteMap[wallTop].setColor(sf::Color(0, 255, 0));
+			else
+				this->spriteMap[wallTop].setColor(sf::Color(255, 255, 255));
+
 			this->wallsTop[i].pos.x -= 1;// wallSpeed;
 			this->wallsTop[i].center.x = this->wallsTop[i].pos.x + 200;
 			this->spriteMap[wallTop].setPosition(this->wallsTop[i].pos);
@@ -198,6 +268,11 @@ void GraphicsManager::wallDrawing()
 			this->wallsTop[i].pos.x = -400.0;
 		if (this->wallsBot[i].pos.x > -400)
 		{
+			if (this->wallsBot[i].pos.x < 400)
+				this->spriteMap[wallBot].setColor(sf::Color(0, 255, 0));
+			else
+				this->spriteMap[wallBot].setColor(sf::Color(255, 255, 255));
+
 			this->wallsBot[i].pos.x -= 1;// wallSpeed;
 			this->wallsBot[i].center.x = this->wallsBot[i].pos.x + 200;
 			this->spriteMap[wallBot].setPosition(this->wallsBot[i].pos);
@@ -207,33 +282,6 @@ void GraphicsManager::wallDrawing()
 			this->wallsBot[i].pos.x = -400.0;
 		i++;
 	}
-	/*int temp;
-	int diff;
-
-	if (this->spriteMap[wallBot].getPosition().x != -400)
-	{
-		diff = this->spriteMap[wallBot].getTexture()->getSize().x * (-1);
-		//std::cout << this->spriteMap[wall].getPosition().x + this->spriteMap[wall].getTexture()->getSize().x << std::endl;
-		this->spriteMap[wallBot].move(wallSpeed, 0);
-		this->mainWindow->draw(this->spriteMap[wallBot]);
-		this->spriteMap[wallBot].move(200, 0);
-		if (this->spriteMap[wallBot].getPosition().x < diff)
-		{
-			this->spriteMap[wallBot].setPosition(-400, (this->winY / 2));
-		}
-	}
-	if (this->spriteMap[wallTop].getPosition().x != -400)
-	{
-		diff = this->spriteMap[wallTop].getTexture()->getSize().x * (-1);
-		//std::cout << this->spriteMap[wall].getPosition().x + this->spriteMap[wall].getTexture()->getSize().x << std::endl;
-		this->spriteMap[wallTop].move(wallSpeed, 0);
-		this->mainWindow->draw(this->spriteMap[wallTop]);
-
-		if (this->spriteMap[wallTop].getPosition().x < diff)
-		{
-			this->spriteMap[wallTop].setPosition(-400, (this->winY / 2) - 250);
-		}
-	}*/
 }
 
 bool GraphicsManager::wallCollider()
@@ -265,13 +313,15 @@ void GraphicsManager::backgroundDrawing(float bpm)
 	int diff = (this->spriteMap[background].getTexture()->getSize().x / 3) - this->spriteMap[background].getTexture()->getSize().x;
 	//std::cout << this->spriteMap[background].getPosition().x + this->spriteMap[background].getTexture()->getSize().x << std::endl;
 	this->spriteMap[background].move(backgroundSpeed, 0);
+/*	if (this->isColliding == true)
+		this->spriteMap[background].setColor(sf::Color(0, 196, 80 + (bpm /2)));
+	else*/
+		this->spriteMap[background].setColor(sf::Color(196, 80 + (bpm / 2), 0));
 	this->mainWindow->draw(this->spriteMap[background]);
 	if (this->spriteMap[background].getPosition().x < diff)
 	{	
 		this->spriteMap[background].setPosition(0, (this->winY / 2) - 250);
-		this->spriteMap[background].setColor(sf::Color(196, 80 + (bpm / 2), 0));
 	}
-	//spritePulse(background);
 	
 }
 
@@ -321,15 +371,17 @@ void GraphicsManager::spriteLoader(std::string filename, SpriteList name)
 
 void GraphicsManager::jump()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && this->isJumping == 0 && this->isSquatting == 0)
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Mouse::isButtonPressed(sf::Mouse::Left)) && this->isSquatting == 0)
 	{
 		this->isJumping = 1;
 	}
 	if (this->isJumping == 1)
 	{
-		this->playerPos->y -= 0.5;
 		if (this->playerPos->y <= (this->winY / 2) - 150.0f)
 			this->isJumping = 2;
+		else
+			this->playerPos->y -= 0.5;
+
 	}
 	else if (this->isJumping == 2)
 	{
@@ -341,15 +393,17 @@ void GraphicsManager::jump()
 
 void GraphicsManager::squat()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && this->isSquatting == 0 && this->isJumping == 0)
+	if ((sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Mouse::isButtonPressed(sf::Mouse::Right)) && this->isJumping == 0)
 	{
 		this->isSquatting = 1;
 	}
 	if (this->isSquatting == 1)
 	{
-		this->playerPos->y += 0.5;
 		if (this->playerPos->y >= (this->winY / 2) + 150.0f)
 			this->isSquatting = 2;
+		else
+			this->playerPos->y += 0.5;
+
 	}
 	else if (this->isSquatting== 2)
 	{
