@@ -42,6 +42,8 @@ void GraphicsManager::init()
 	this->mainClock.restart();
 	this->backgroundSpeed = -0.5f;
 	this->wallSpeed = 3 * this->backgroundSpeed;
+	std::cout << "BG speed is " << this->backgroundSpeed << std::endl;
+	std::cout << "Walls speed is " << this->wallSpeed << std::endl;
 	this->spriteMap[background].setPosition(0, (this->winY / 2) - 250);
 	this->spriteMap[background].setColor(sf::Color(220, 145, 0));
 	this->spriteMap[borderTop].setPosition(0, (this->winY / 2) - 280);
@@ -124,7 +126,6 @@ void GraphicsManager::menu()
 		int x = sf::Mouse::getPosition(*(this->mainWindow)).x;
 		int y = sf::Mouse::getPosition(*(this->mainWindow)).y;
 		// launch game
-		std::cout << ((this->winX / 2) - (1920 / 2) + 650) << " -- " << (this->winX / 2) - (1920 / 2) + 850 << std::endl;
 		if (x >= ((this->winX / 2) - (1920 / 2) + 650) && x <= (this->winX / 2) - (1920 / 2) + 850)
 		{
 			// play
@@ -200,7 +201,6 @@ void GraphicsManager::game()
 	if (this->startLoad.isBeatNow())
 		this->wallSpawn();
 	this->wallDrawing();
-	//sf::Vector2i mouse = sf::Mouse::getPosition(*(this->mainWindow));
 	particles.setEmitter(*(this->playerPos));
 	sf::Time elapsed = mainClock.restart();
 	if (this->isColliding == true)
@@ -264,7 +264,7 @@ void GraphicsManager::wallDrawing()
 			else
 				this->spriteMap[wallTop].setColor(sf::Color(255, 255, 255));
 
-			this->wallsTop[i].pos.x -= 1;// wallSpeed;
+			this->wallsTop[i].pos.x -= 1; // this->wallsTop[i].pos.x - wallSpeed;
 			this->wallsTop[i].center.x = this->wallsTop[i].pos.x + 200;
 			this->spriteMap[wallTop].setPosition(this->wallsTop[i].pos);
 			this->mainWindow->draw(this->spriteMap[wallTop]);
@@ -282,6 +282,7 @@ void GraphicsManager::wallDrawing()
 			this->wallsBot[i].center.x = this->wallsBot[i].pos.x + 200;
 			this->spriteMap[wallBot].setPosition(this->wallsBot[i].pos);
 			this->mainWindow->draw(this->spriteMap[wallBot]);
+
 		}
 		else
 			this->wallsBot[i].pos.x = -400.0;
