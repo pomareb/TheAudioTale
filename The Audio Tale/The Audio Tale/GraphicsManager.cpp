@@ -48,8 +48,6 @@ void GraphicsManager::init()
 	this->spriteMap[background].setColor(sf::Color(220, 145, 0));
 	this->spriteMap[borderTop].setPosition(0, (this->winY / 2) - 280);
 	this->spriteMap[borderBot].setPosition(0, (this->winY / 2) + 215);
-//	this->spriteMap[wall].;
-//	this->spriteMap[wallTop].setColor(sf::Color(40, 40, 40));
 	this->spriteMap[wallTop].setPosition(-400, (this->winY / 2) - 250);
 	this->spriteMap[wallBot].setPosition(-400, (this->winY / 2));
 
@@ -96,9 +94,6 @@ void GraphicsManager::init()
 	this->wallsBot[4].pos.x = -400;
 	this->wallsBot[4].pos.y = (this->winY / 2);
 	this->wallsBot[4].type = wallBot;
-	
-	// init du son
-	
 }
 
 
@@ -146,18 +141,10 @@ void GraphicsManager::menu()
 	this->mainWindow->display();
 
 }
-/*
-void GraphicsManager::Credits()
-{
 
-}
-void GraphicsManager::()
-{
-
-}
-*/
 void GraphicsManager::launch()
 {
+	// sound init
 	this->startLoad.loadSound("trauma.mp3", "trauma.mp3");
 	this->startLoad.playSound();
 	this->startLoad.playPauseChannel();
@@ -227,13 +214,12 @@ void GraphicsManager::wallSpawn()
 		if (this->wallsTop[i].pos.x == -400)
 		{
 			this->wallsTop[i].pos.x = this->winX + 150;
-			//this->wallsTop[i].pos.y = (this->winY / 2) - 250;
+
 			return;
 		}
 		else if (this->wallsBot[i].pos.x  == -400)
 		{
 			this->wallsBot[i].pos.x = this->winX + 150;
-			//this->wallsBot[i].pos.y = this->winY / 2;
 			return;
 		}
 		i++;
@@ -264,7 +250,7 @@ void GraphicsManager::wallDrawing()
 			else
 				this->spriteMap[wallTop].setColor(sf::Color(255, 255, 255));
 
-			this->wallsTop[i].pos.x -= 1; // this->wallsTop[i].pos.x - wallSpeed;
+			this->wallsTop[i].pos.x -= 2;
 			this->wallsTop[i].center.x = this->wallsTop[i].pos.x + 200;
 			this->spriteMap[wallTop].setPosition(this->wallsTop[i].pos);
 			this->mainWindow->draw(this->spriteMap[wallTop]);
@@ -278,7 +264,7 @@ void GraphicsManager::wallDrawing()
 			else
 				this->spriteMap[wallBot].setColor(sf::Color(255, 255, 255));
 
-			this->wallsBot[i].pos.x -= 1;// wallSpeed;
+			this->wallsBot[i].pos.x -= 2;
 			this->wallsBot[i].center.x = this->wallsBot[i].pos.x + 200;
 			this->spriteMap[wallBot].setPosition(this->wallsBot[i].pos);
 			this->mainWindow->draw(this->spriteMap[wallBot]);
@@ -296,15 +282,13 @@ bool GraphicsManager::wallCollider()
 
 	while (i <= 4)
 	{
-		//std::cout << "TOP COLLIDER TRIGGERED / " << i << " - dist : " << sqrt(pow(this->wallsTop[i].center.x - playerPos->x, 2) * pow(this->wallsTop[i].center.y - playerPos->y, 2)) << "center :" << this->wallsTop[i].center.x << " - " << this->wallsTop[i].center.y << std::endl;
+
 		if (sqrt(pow(this->wallsTop[i].center.x - playerPos->x, 2) + pow(this->wallsTop[i].center.y - playerPos->y, 2)) < 185.0)
 		{
-//			std::cout << "TOP COLLIDER TRIGGERED / " << i << " - dist : " << sqrt(pow(this->wallsTop[i].center.x - playerPos->x, 2) * pow(this->wallsTop[i].center.y - playerPos->y, 2)) << "center :" << this->wallsTop[i].center.x << " - " << this->wallsTop[i].center.y<< std::endl;
 			return true;
 		}
 		if (sqrt(pow(this->wallsBot[i].center.x - playerPos->x, 2) + pow(this->wallsBot[i].center.y - playerPos->y, 2)) < 215.0)
 		{
-//			std::cout << "BOT COLLIDER TRIGGERED / " << i << " - dist : " << sqrt(pow(this->wallsTop[i].center.x - playerPos->x, 2) * pow(this->wallsTop[i].center.y - playerPos->y, 2)) << "center :" << this->wallsTop[i].center.x << " - " << this->wallsTop[i].center.y << std::endl;
 			return true;
 		}
 		i++;
@@ -317,11 +301,7 @@ void GraphicsManager::backgroundDrawing(float bpm)
 {
 	int temp;
 	int diff = (this->spriteMap[background].getTexture()->getSize().x / 3) - this->spriteMap[background].getTexture()->getSize().x;
-	//std::cout << this->spriteMap[background].getPosition().x + this->spriteMap[background].getTexture()->getSize().x << std::endl;
 	this->spriteMap[background].move(backgroundSpeed, 0);
-/*	if (this->isColliding == true)
-		this->spriteMap[background].setColor(sf::Color(0, 196, 80 + (bpm /2)));
-	else*/
 		this->spriteMap[background].setColor(sf::Color(196, 80 + (bpm / 2), 0));
 	this->mainWindow->draw(this->spriteMap[background]);
 	if (this->spriteMap[background].getPosition().x < diff)
@@ -335,7 +315,6 @@ void GraphicsManager::borderDrawing()
 {
 	int temp;
 	int diff = (this->spriteMap[borderTop].getTexture()->getSize().x / 3) - this->spriteMap[borderTop].getTexture()->getSize().x;
-	//std::cout << this->spriteMap[background].getPosition().x + this->spriteMap[background].getTexture()->getSize().x << std::endl;
 	this->spriteMap[borderTop].move(wallSpeed, 0);
 	this->spriteMap[borderBot].move(wallSpeed, 0);
 	this->mainWindow->draw(this->spriteMap[borderTop]);
@@ -345,7 +324,6 @@ void GraphicsManager::borderDrawing()
 		this->spriteMap[borderTop].setPosition(0, (this->winY / 2) - 280);
 		this->spriteMap[borderBot].setPosition(0, (this->winY / 2) + 215);
 	}
-	//spritePulse(background);
 }
 
 void GraphicsManager::spritePulse(SpriteList sprite)
