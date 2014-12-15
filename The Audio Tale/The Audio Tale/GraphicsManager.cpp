@@ -128,10 +128,15 @@ void GraphicsManager::menu()
 		if (x >= ((this->winX / 2) - (1920 / 2) + 650) && x <= (this->winX / 2) - (1920 / 2) + 850)
 		{
 			// play
-			if (y > ((this->winY / 2) - (1080 / 2) + 500) && y < ((this->winY / 2) - (1080 / 2) + 550))
+			if (y > ((this->winY / 2) - (1080 / 2) + 420) && y < ((this->winY / 2) - (1080 / 2) + 520))
 			{
 				this->isMenu = false;
 				this->launch();
+			}
+			
+			if (y >((this->winY / 2) - (1080 / 2) + 580) && y < ((this->winY / 2) - (1080 / 2) + 670))
+			{
+				this->mainWindow->close();
 			}
 		}
 	}
