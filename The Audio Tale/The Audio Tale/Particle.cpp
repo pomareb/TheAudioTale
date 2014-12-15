@@ -1,9 +1,10 @@
 #include "Particle.h"
 
-Particle::Particle(unsigned int maxParticles) : vertices(sf::Points, maxParticles), emitter(0, 0), Elems(maxParticles)
+Particle::Particle(unsigned int maxParticles, sf::Color col) : vertices(sf::Points, maxParticles), emitter(0, 0), Elems(maxParticles)
 {
 	this->elemNbr = maxParticles;
 	this->lifeTime = sf::seconds(3);
+	this->color = col;
 }
 
 void Particle::setEmitter(sf::Vector2f pos)
@@ -20,7 +21,7 @@ void Particle::update(sf::Time elapsed)
 			resetParticle(i);
 		vertices[i].position += p.velocity * elapsed.asSeconds();
 		float ratio = p.lifeTime.asSeconds() / lifeTime.asSeconds();
-		vertices[i].color.a = static_cast<sf::Uint8>(ratio * 255);
+		vertices[i].color = this->color;
 	}
 }
 
@@ -31,6 +32,11 @@ void Particle::resetParticle(std::size_t index)
 	Elems[index].velocity = sf::Vector2f(std::cos(angle) * speed, std::sin(angle) * speed);
 	Elems[index].lifeTime = sf::milliseconds((std::rand() % 1000) + 500);
 	vertices[index].position = emitter;
+}
+
+void Particle::setColor(sf::Color col)
+{
+	this->color = col;
 }
 Particle::~Particle()
 {
