@@ -1,52 +1,22 @@
-﻿Build started 15/12/2014 04:56:34.
-     1>Project "C:\Users\Benjamin\Code\Github\TheAudioTale\The Audio Tale\The Audio Tale\The Audio Tale.vcxproj" on node 2 (Build target(s)).
+﻿La génération a démarré 27/11/2014 03:33:15.
+     1>Projet "C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\The Audio Tale\The Audio Tale.vcxproj" sur le nœud 2 (Build cible(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Benjamin\Code\Github\TheAudioTale\The Audio Tale\\..\SFML-2.1\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GraphicsManager.cpp
-         GraphicsManager.cpp
-     1>GraphicsManager.cpp(11): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(45): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(47): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(48): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(51): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(52): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(56): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(58): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(61): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(63): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(67): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(68): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(71): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(73): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(78): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(80): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(83): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(85): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(88): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(90): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(93): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(95): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(143): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(192): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
-     1>GraphicsManager.cpp(229): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(235): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(324): warning C4244: 'argument' : conversion from 'float' to 'sf::Uint8', possible loss of data
-     1>GraphicsManager.cpp(328): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(317): warning C4101: 'temp' : unreferenced local variable
-     1>GraphicsManager.cpp(344): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(345): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>GraphicsManager.cpp(335): warning C4101: 'temp' : unreferenced local variable
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\\..\SFML-2.1\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt FMODLoader.cpp
+         FMODLoader.cpp
+     1>FMODLoader.cpp(34): warning C4244: '=' : conversion de 'DWORD' en 'float', perte possible de données
+     1>FMODLoader.cpp(197): warning C4244: 'argument' : conversion de 'float' en 'const int', perte possible de données
+     1>FMODLoader.cpp(214): warning C4244: '=' : conversion de 'DWORD' en 'float', perte possible de données
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Benjamin\Code\Github\TheAudioTale\The Audio Tale\Release\The Audio Tale.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\Benjamin\Code\Github\TheAudioTale\The Audio Tale\\..\SFML_bin\lib\Release" fmodex_vc.lib "sfml-audio.lib" "sfml-graphics.lib" "sfml-system.lib" "sfml-window.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Benjamin\Code\Github\TheAudioTale\The Audio Tale\Release\The Audio Tale.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Benjamin\Code\Github\TheAudioTale\The Audio Tale\Release\The Audio Tale.lib" /MACHINE:X86 /SAFESEH Release\audioParser.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\Release\The Audio Tale.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\\..\SFML_bin\lib\Release" fmodex_vc.lib "sfml-audio.lib" "sfml-graphics.lib" "sfml-system.lib" "sfml-window.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\Release\The Audio Tale.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\Release\The Audio Tale.lib" /MACHINE:X86 /SAFESEH Release\audioParser.obj
          Release\FMODLoader.obj
          Release\GraphicsManager.obj
          Release\Main.obj
          Release\Particle.obj
-         Release\Player.obj
-         Generating code
-         Finished generating code
-         The Audio Tale.vcxproj -> C:\Users\Benjamin\Code\Github\TheAudioTale\The Audio Tale\Release\The Audio Tale.exe
-     1>Done Building Project "C:\Users\Benjamin\Code\Github\TheAudioTale\The Audio Tale\The Audio Tale\The Audio Tale.vcxproj" (Build target(s)).
+         Génération de code en cours
+         Fin de la génération du code
+         The Audio Tale.vcxproj -> C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\Release\The Audio Tale.exe
+     1>Génération du projet "C:\Users\Destruktou\Desktop\GameProject\TheAudioTale\The Audio Tale\The Audio Tale\The Audio Tale.vcxproj" terminée (Build cible(s)).
 
-Build succeeded.
+La génération a réussi.
 
-Time Elapsed 00:00:05.11
+Temps écoulé 00:00:01.36
