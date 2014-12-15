@@ -22,12 +22,12 @@ GraphicsManager::GraphicsManager(std::string Name, int sizeX, int sizeY) : parti
 	this->isColliding = false;
 	this->lastIsCollididng = false;
 	this->score = 0;
-	fnt.loadFromFile("gilsanub.ttf");
+	fnt.loadFromFile("bauhs93.ttf");
 	this->txt.setFont(fnt);
 	this->txt.setString("Score : ");
 	this->txt.setCharacterSize(24);
 	this->txt.setColor(sf::Color::White);
-	this->txt.setStyle(sf::Text::Bold | sf::Text::Underlined);
+	this->txt.setStyle(sf::Text::Bold);
 	this->txt.setPosition(25,100);
 }
 
